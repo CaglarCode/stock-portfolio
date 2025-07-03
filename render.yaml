@@ -2,7 +2,10 @@ services:
   - type: web
     name: stock-portfolio
     env: python
-    buildCommand: pip install -r requirements.txt
+    buildCommand: |
+  pip install -r requirements.txt
+  python create_database.py
+  python fetch_data.py
     startCommand: gunicorn app:app
     envVars:
       - key: PYTHON_VERSION
