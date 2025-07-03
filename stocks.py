@@ -3,7 +3,7 @@ import yfinance as yf
 def fetch_stock_data(symbol, company, sector):
     try:
         ticker = yf.Ticker(symbol)
-        info = ticker.info
+        fast = = ticker.fast_info
 
         return {
             'symbol': symbol,
