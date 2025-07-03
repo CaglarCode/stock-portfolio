@@ -1,7 +1,6 @@
 import sqlite3
 import yfinance as yf
 
-#my protfolio stocks
 TICKERS = {
     "AAPL": "Apple Inc.",
     "MSFT": "Microsoft Corporation",
