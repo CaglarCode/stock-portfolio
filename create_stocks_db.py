@@ -1,12 +1,17 @@
 import sqlite3
-import pandas as pd
 
-df = pd.read_excel("Stock Tracker.xlsx", sheet_name="Sheet1")
+
+stock_data = [
+    ("ASML", "ASML Holding NV", "AI Chips"),
+    ("META", "Meta Platforms Inc", "Big Tech"),
+    ("ISRG", "Intuitive Surgical Inc", "MedTech"),
+    ("ADBE", "Adobe Inc", "Software"),
+    ("MSFT", "Microsoft Corp", "Big Tech")
+]
 
 
 conn = sqlite3.connect("stocks.db")
 cursor = conn.cursor()
-
 
 cursor.execute("DROP TABLE IF EXISTS stocks")
 cursor.execute("""
@@ -18,10 +23,9 @@ CREATE TABLE stocks (
 )
 """)
 
-
-stock_data = df[['Symbol', 'Company', 'Sector']].dropna().values.tolist()
 cursor.executemany("INSERT INTO stocks (symbol, company, sector) VALUES (?, ?, ?)", stock_data)
 
 conn.commit()
 conn.close()
-print("stocks.db başarıyla oluşturuldu ve veriler yüklendi.")
+
+print(" stocks.db created ")
