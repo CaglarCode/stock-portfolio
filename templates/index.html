@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">📈 My Stock Portfolio</h2>
+    <table class="table table-bordered table-hover text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>Symbol</th>
+                <th>Company</th>
+                <th>Sector</th>
+                <th>Current Price</th>
+                <th>52W High</th>
+                <th>52W Low</th>
+                <th>Daily % Change</th>
+                <th>Dividend</th>
+                <th>EPS</th>
+                <th>P/E Ratio</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+            <tr>
+                <td>{{ stock.symbol }}</td>
+                <td>{{ stock.company }}</td>
+                <td>{{ stock.sector }}</td>
+                <td>{{ stock.current_price }}</td>
+                <td>{{ stock['52w_high'] }}</td>
+                <td>{{ stock['52w_low'] }}</td>
+                <td>{{ stock.change_percent }}%</td>
+                <td>{{ stock.dividend }}</td>
+                <td>{{ stock.eps }}</td>
+                <td>{{ stock.pe_ratio }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
